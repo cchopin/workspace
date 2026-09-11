@@ -1,0 +1,27 @@
+# Gros fichiers : synchronisés par ProtonDrive via lien symbolique, jamais
+# par git. GitHub refuse tout fichier au-delà de 100 Mo et un modèle ou un
+# dataset dépasse ça sans effort.
+**/models/
+**/data/
+
+# Projets de dev : chacun a son propre dépôt GitHub, git ne sait pas imbriquer
+# proprement des dépôts.
+dev/
+
+# Artefacts lourds qui n'ont rien à faire dans un dépôt
+*.dmg
+*.iso
+*.vmdk
+*.qcow2
+*.ova
+*.raw
+
+# Environnements et caches
+**/venv/
+**/.venv/
+**/node_modules/
+**/__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
