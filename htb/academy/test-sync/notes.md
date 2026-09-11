@@ -1,1 +1,0 @@
-cree sur mac-studio
