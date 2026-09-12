@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniDigit Status Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    
+</head>
+<body>
+
+<div class="pk-vignette"></div>
+
+<nav class="pk-nav">
+    <a href="/" class="pk-nav__brand">
+        <span class="pk-nav__brand-prefix">//</span> <span class="pk-nav__brand-name">PHANTOMKERNEL</span>
+    </a>
+    <ul class="pk-nav__links">
+        <li><a href="/">Products</a></li>
+    </ul>
+</nav>
+
+<main class="pk-main">
+    <div class="pk-container">
+        
+<section class="pk-section-hero pk-section-hero--purple">
+    <div class="pk-section-hero__tag">Operations</div>
+    <h1 class="pk-section-hero__title">OmniDigit Status</h1>
+    <p class="pk-section-hero__sub">Service health, deployment notes, and diagnostics controls.</p>
+</section>
+
+<div class="pk-narrow">
+    <div class="pk-panel pk-panel--purple">
+        <div class="pk-panel__header">Service Health</div>
+        <div class="pk-status pk-status--success">OmniDigit verifier: operational</div>
+        <div class="pk-status pk-status--info">OCR model cache: loaded</div>
+        <div class="pk-status pk-status--warning">Staging diagnostics profile: enabled</div>
+    </div>
+
+    <div class="pk-panel pk-panel--purple">
+        <div class="pk-panel__header">Release Notes</div>
+        <p>
+            The staging environment currently exposes a slim public QA surface used during rollout validation.
+            Only UI metadata and one known-good example image remain public.
+        </p>
+        <p>
+            Public diagnostics console:
+            <a href="/omnidigit/debug">/omnidigit/debug</a>
+        </p>
+<pre>qa_diagnostics_url=/omnidigit/debug
+qa_bundle=["example.png","config.json"]
+legacy_replay_marker=13-37-17</pre>
+        <p class="pk-note">
+            Additional implementation details are not exposed in staging.
+        </p>
+    </div>
+</div>
+
+    </div>
+</main>
+
+<footer class="pk-footer">
+    &copy; 2025 PhantomKernel Inc. All rights reserved.
+</footer>
+
+
+
+</body>
+</html>

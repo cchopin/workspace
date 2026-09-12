@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniDigit Debug Console — OmniDigit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    
+</head>
+<body>
+
+<div class="pk-vignette"></div>
+
+<nav class="pk-nav">
+    <a href="/" class="pk-nav__brand">
+        <span class="pk-nav__brand-prefix">//</span> <span class="pk-nav__brand-name">PHANTOMKERNEL</span>
+    </a>
+    <ul class="pk-nav__links">
+        <li><a href="/">Products</a></li>
+    </ul>
+</nav>
+
+<main class="pk-main">
+    <div class="pk-container">
+        
+<div class="pk-docs-header">
+    <h1>OmniDigit Debug Console</h1>
+    <p>Public QA notes for the OCR staging surface.</p>
+</div>
+
+<div class="pk-docs-layout">
+<div>
+    <div class="pk-panel pk-panel--purple">
+        <h2>1. Observable Surface</h2>
+        <p>
+            OmniDigit accepts grayscale PNG CAPTCHAs made of six 28&times;28 digit tiles. The
+            public bank on <code>/omnidigit/</code> supplies the tiles shown on the main page.
+            Staging only exposes the published example and layout metadata on this surface.
+        </p>
+
+        <table class="pk-table">
+            <thead>
+                <tr><th>Property</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Format</td><td>Grayscale PNG (single channel)</td></tr>
+                <tr><td>CAPTCHA dimensions</td><td>168 &times; 28 pixels</td></tr>
+                <tr><td>Tile dimensions</td><td>28 &times; 28 pixels</td></tr>
+                <tr><td>Tile count</td><td>6</td></tr>
+                <tr><td>Public bank size</td><td>30 tiles</td></tr>
+            </tbody>
+        </table>
+
+        <p class="pk-note">
+            Classifier details, training data, and acceptance thresholds are not published on this surface.
+        </p>
+    </div>
+
+    <div class="pk-panel pk-panel--purple">
+        <h2>2. Published Example</h2>
+        <p>
+            A clean accepted sample is published below. It passes normal verification and is useful for checking
+            image layout, OCR behavior, and upload handling before you try anything more interesting.
+        </p>
+
+        <div class="pk-captcha-challenge">
+            <div class="pk-captcha-tiles" aria-label="Example CAPTCHA digits">
+                
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAAqklEQVR4nGNgGMLA6en/Xbw45Opf/P33txHOZUGWy6liYWBg4IDzmRBSnPWTUJSiAMN/EFCIRU7qwd9/f//+/fdYFIuxibIQesFrLJL8UHotNiv1//37d/rfv0uc2CRZk6eIG/79m4rTwU1//xrjlHz29y8ylwlFkpHxOU6Nap//+uLUqcDF8AOnpBNOMxkYGHb/e4Zb8t/fT2o4jf2OaiUqcP3qjs9WEgAAvbM5+s7LAqAAAAAASUVORK5CYII=" class="pk-captcha-tile" alt="Example digit 1">
+                
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAAlUlEQVR4nGNgGFjAlnL130EBHJI9LytUInBItn/Qwmko46043DZG/sMQYoKzRHHrY2BQ/YfbSga2U0e5ccuKvjqAR6/UtPcbvHDr1tr99aoXHt09P9txyzIo7N7GhluW+2oylMWEKfmV4TVunSFfpHDKSV+dg1NO9Op+bF7V8ldV9V/45RjWYNDaeur/lWnOuB1DFwAADUAnlFTyS8AAAAAASUVORK5CYII=" class="pk-captcha-tile" alt="Example digit 2">
+                
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAA8UlEQVR4nGNgGJrA7tLfE37sHNqS2uyYku7vn//5c+Lkn0d/TpRgygpaffnz59fz589//sqHiDAhJN+7cTAw3JSUL/n28zGmVqMT2/Z/T5z5589y7K7K/v/378Ma7HJix//+WSaKXY5p+Z+/f3DIMZT/mb0dl2TJz9nsU/7kYpWz/XtfmWHKX0dscgGP/+gzMExBNhYRCMpSZ+8wMHBgNVT7/Wd9Bgbpv88FsEjO+HOZgYFh2l+sIbDqbzYDQ93fK8hiLDDG//93GJpT//dilWRgUHcs/pM+H6uDVv75++dPOVYpBgaZdX//TOLDIUkyAABmAV7zE0l89QAAAABJRU5ErkJggg==" class="pk-captcha-tile" alt="Example digit 3">
+                
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAAe0lEQVR4nGNgGGEg59+N3eti2VDEWGCMpU9YZAynSHXi1M12YiZOOZb2V7I4JSv/B+CUq/8XiUvK4sCvHHQxRig9LYFj43rGi68ZGH6/wpDM97RgYDhjwsDA8P85w98DjP9/ngyIZkQ3ikFKhkFNloFB89Nl3P4aBVAAAI6HIhws+C6ZAAAAAElFTkSuQmCC" class="pk-captcha-tile" alt="Example digit 4">
+                
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAAjklEQVR4nGNgGJ7Aef7/D+GprFjlpvx8v//v36ucWKQYc36/szH8dF4Dmz7hv39b8v/9nYokxARnKTMwVHpMR1HPAmdd7We4vNY24zpu987/a4HVWAj4/gWP5OMreCRRAJokIyMeSd5zeAz6V4VHJz47M/Ep3fNPF4+xF+/gkbzxHY/kEzwOYuDD5yJUAAAamShiDu2PcAAAAABJRU5ErkJggg==" class="pk-captcha-tile" alt="Example digit 5">
+                
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAApUlEQVR4nGNgGAUI4PPq3+ICbuxy7b/+/r31c7ICNrnKd39/3eA1ff1ECovktr9/9zIwMHj/dEAWZYJQm38tDWZgYLjF4gjhi3Ssi0bTL5D875+ZZ/nKf////fv3BE3O78Pfvx///v3799/fhwfSGBgYYTLCk425JRkYGBj/v13LsO7+u3fI2pw//f339+/XCeFm0nAxuE4GtRrG/5vf7cXm0RENAK8iQoL6GWfqAAAAAElFTkSuQmCC" class="pk-captcha-tile" alt="Example digit 6">
+                
+            </div>
+        </div>
+
+        <p>
+            Download the full composite: <a href="/omnidigit/debug/example.png">/omnidigit/debug/example.png</a>
+        </p>
+    </div>
+
+    <div class="pk-panel pk-panel--purple">
+        <h2>2b. QA Validation Notes</h2>
+        <p class="pk-note" style="margin-bottom: 0.75rem;">
+            Internal - retained from pre-deployment validation pass.
+        </p>
+        <p>
+            Verifier classifier was trained using a standard pipeline with canonical normalization and no proprietary augmentation. Anti-tampering validates per-tile L<sub>0</sub> pixel distance against the public bank. It does not inspect perturbation provenance or gradient signatures.
+        </p>
+        <p>
+            <strong>Note:</strong> Classifier decision boundaries are consistent with independently trained instances on the same distribution. Robustness review pending.
+        </p>
+    </div>
+
+    <div class="pk-panel pk-panel--purple">
+        <h2>3. Verification Path</h2>
+        <h3>POST /omnidigit/api/verify</h3>
+        <p>
+            Full verification endpoint. Admin access only succeeds when the submission stays close to the public
+            bank and OCR resolves to the internal escalation pattern used by staging.
+        </p>
+        <p class="pk-note">
+            Live prediction diagnostics are not published on this surface. Use the example bundle to validate layout,
+            then submit finished CAPTCHA candidates to the verifier.
+        </p>
+    </div>
+</div>
+
+<div class="pk-docs-sidebar">
+    <div class="pk-docs-sidebar__card">
+        <h3>Downloads</h3>
+        <ul>
+            <li><a href="/omnidigit/debug/example.png">&#x2B07; Example CAPTCHA</a></li>
+            <li><a href="/omnidigit/debug/config.json">&#x2B07; UI Config</a></li>
+        </ul>
+    </div>
+
+    <div class="pk-docs-sidebar__card">
+        <h3>Usage Notes</h3>
+        <p>
+            Keep submissions bank-consistent and use the published example to mirror the expected layout before
+            calling <code>/omnidigit/api/verify</code>.
+        </p>
+    </div>
+
+    <div class="pk-docs-sidebar__card">
+        <h3>QA Provenance</h3>
+        <p>
+            Pipeline: standard (no custom layers)<br>
+            Normalization: canonical<br>
+            Robustness review: pending
+        </p>
+    </div>
+</div>
+</div>
+
+    </div>
+</main>
+
+<footer class="pk-footer">
+    &copy; 2025 PhantomKernel Inc. All rights reserved.
+</footer>
+
+
+
+</body>
+</html>

@@ -25,10 +25,10 @@ class SVHNCNN(nn.Module):
         x=self.pool(F.relu(self.conv1(x))); x=self.pool(F.relu(self.conv2(x))); x=self.pool(F.relu(self.conv3(x)))
         x=x.view(-1,64*4*4); x=F.relu(self.fc1(x)); return self.fc2(x)
 
-idx=np.random.choice(len(train),30000,replace=False)
+idx=np.arange(len(train))
 member_idx=idx.tolist()
 tr=Subset(train,member_idx)
-train_loader=DataLoader(tr,batch_size=256,shuffle=True)
+train_loader=DataLoader(tr,batch_size=1024,shuffle=True)
 test_loader=DataLoader(test,batch_size=512)
 model=SVHNCNN()
 opt=torch.optim.SGD(model.parameters(),lr=0.1,momentum=0.9)
@@ -55,16 +55,19 @@ def losses_for(dataset, indices, n=2000):
     model.train(); return np.array(ls)
 
 def local_mia():
-    # members: training subset; non-members: test set
-    mem=losses_for(train, member_idx, 2000)
-    non=losses_for(test, list(range(len(test))), 2000)
-    # threshold attack: predict member if loss < thr; advantage = max balanced-acc - 0.5
-    allv=np.concatenate([mem,non]); best=0
-    for thr in np.quantile(allv, np.linspace(0.01,0.99,99)):
-        tpr=(mem<thr).mean(); fpr=(non<thr).mean()
-        acc_bal=0.5*(tpr+(1-fpr))
-        best=max(best,acc_bal)
-    return best-0.5
+    # members: training subset; non-members: test set. Split-fit threshold to avoid optimistic bias.
+    mem=losses_for(train, member_idx, 5000)
+    non=losses_for(test, list(range(len(test))), 5000)
+    n=min(len(mem),len(non)); mem=mem[:n]; non=non[:n]
+    half=n//2
+    allv=np.concatenate([mem[:half],non[:half]]); best_thr=None; best=0
+    for thr in np.quantile(allv, np.linspace(0.01,0.99,199)):
+        tpr=(mem[:half]<thr).mean(); fpr=(non[:half]<thr).mean()
+        a=0.5*(tpr+(1-fpr))
+        if a>best: best=a; best_thr=thr
+    # evaluate on held-out half
+    tpr=(mem[half:]<best_thr).mean(); fpr=(non[half:]<best_thr).mean()
+    return 0.5*(tpr+(1-fpr))-0.5
 
 for ep in range(20):
     for xb,yb in train_loader:

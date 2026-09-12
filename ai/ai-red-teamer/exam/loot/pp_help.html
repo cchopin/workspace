@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassPort Partner Support Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/passport_aegis.css?v=2">
+    
+</head>
+
+<body class="access-shell">
+
+    <nav class="pk-nav">
+        <a href="/passport/" class="pk-nav__brand">
+            <span class="pk-nav__brand-prefix">::</span> <span class="pk-nav__brand-name">AEGISGATE ACCESS CLOUD</span>
+        </a>
+        <ul class="pk-nav__links">
+            <li><a href="/passport/">Home</a></li>
+            <li><a href="/passport/passport">PassPort</a></li>
+            <li><a href="/passport/help">Support</a></li>
+            <li><a href="/passport/operations">Ops</a></li>
+            <li><a href="/passport/visitors">Visitor</a></li>
+        </ul>
+    </nav>
+
+    <main class="pk-main">
+        <div class="pk-container">
+            
+<section class="pk-section-hero pk-section-hero--green">
+    <div class="pk-section-hero__tag">Partner Operations</div>
+    <h1 class="pk-section-hero__title">PassPort Support Center</h1>
+    <p class="pk-section-hero__sub">Operational portal for partner runbooks, release advisories, and incident archives.</p>
+</section>
+
+<div class="pk-wide">
+    <div class="pk-panel pk-panel--green">
+        <div class="pk-panel__header">Support Portal Modules</div>
+        <div class="pk-grid">
+            <a href="/passport/help/cases" class="pk-card pk-card--green">
+                <div class="pk-card__id">Archive</div>
+                <div class="pk-card__title">Case Archive Index</div>
+                <div class="pk-card__desc">Browse and filter support incidents by owner, status, and migration tags.</div>
+                <div class="pk-card__arrow">Open -></div>
+            </a>
+            <a href="/passport/help/releases" class="pk-card pk-card--azure">
+                <div class="pk-card__id">Advisories</div>
+                <div class="pk-card__title">Release & Incident Feed</div>
+                <div class="pk-card__desc">Staged rollout notes, migration advisories, and rollback milestones.</div>
+                <div class="pk-card__arrow">Open -></div>
+            </a>
+            <a href="/passport/help/partners" class="pk-card pk-card--yellow">
+                <div class="pk-card__id">Runbooks</div>
+                <div class="pk-card__title">Partner Integration Runbooks</div>
+                <div class="pk-card__desc">Deployment checklists, validation workflow, and troubleshooting matrix.</div>
+                <div class="pk-card__arrow">Open -></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="pk-panel pk-panel--green">
+        <div class="pk-panel__header">Archive Operations Window</div>
+        <p>
+            Archive endpoint format:
+            <code>/passport/help/case/&lt;case_id&gt;</code>
+        </p>
+        <p>Current visible archive volume: <strong>17</strong> incident records.</p>
+        <p class="pk-mb-1">
+            Recent case IDs:
+            
+            <code>3434</code>, 
+            
+            <code>3433</code>, 
+            
+            <code>3431</code>, 
+            
+            <code>3429</code>, 
+            
+            <code>3427</code>, 
+            
+            <code>3426</code>, 
+            
+            <code>3424</code>, 
+            
+            <code>3423</code>
+            
+        </p>
+        <p class="pk-mb-1">
+            CDN rollback tagged cases:
+            
+            <code>3434</code>, 
+            
+            <code>3433</code>, 
+            
+            <code>3427</code>, 
+            
+            <code>3422</code>
+            
+        </p>
+        <ul>
+            <li><strong>Filter shortcut:</strong> <a href="/passport/help/cases?tag=cdn-rollback">/passport/help/cases?tag=cdn-rollback</a></li>
+            <li><strong>Platform-owner shortcut:</strong> <a href="/passport/help/cases?owner=Platform+Engineering">/passport/help/cases?owner=Platform+Engineering</a></li>
+            <li><strong>Archive help:</strong> Use tag and owner filters to locate migration-related records.</li>
+        </ul>
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <footer class="pk-footer">
+        AegisGate Partner Environment · Badge Access Suite v3.2
+    </footer>
+
+    
+
+</body>
+
+</html>

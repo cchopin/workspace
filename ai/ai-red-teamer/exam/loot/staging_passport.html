@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhantomKernel Access Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/passport_aegis.css?v=2">
+    
+</head>
+
+<body class="access-shell">
+
+    <nav class="pk-nav">
+        <a href="/passport/" class="pk-nav__brand">
+            <span class="pk-nav__brand-prefix">::</span> <span class="pk-nav__brand-name">AEGISGATE ACCESS CLOUD</span>
+        </a>
+        <ul class="pk-nav__links">
+            <li><a href="/passport/">Home</a></li>
+            <li><a href="/passport/passport">PassPort</a></li>
+            <li><a href="/passport/help">Support</a></li>
+            <li><a href="/passport/operations">Ops</a></li>
+            <li><a href="/passport/visitors">Visitor</a></li>
+        </ul>
+    </nav>
+
+    <main class="pk-main">
+        <div class="pk-container">
+            
+<section class="pk-hero">
+    <div class="pk-hero__eyebrow">// Access Platform</div>
+    <h1 class="pk-hero__title">Unified Entry Systems for<br>Enterprise Facilities</h1>
+    <p class="pk-hero__subtitle">
+        Operational portal for physical access, partner integrations, visitor workflows, and incident response.
+    </p>
+</section>
+
+<div class="pk-grid">
+    <a href="/passport/passport" class="pk-card pk-card--green">
+        <div class="pk-card__id">Auth</div>
+        <h2 class="pk-card__title">PassPort Terminal</h2>
+        <p class="pk-card__desc">
+            Upload badge images and validate employee credentials through the scanner workflow.
+        </p>
+        <div class="pk-card__arrow">Open Terminal -></div>
+    </a>
+
+    <a href="/passport/help" class="pk-card pk-card--azure">
+        <div class="pk-card__id">Support</div>
+        <h2 class="pk-card__title">Partner Support Center</h2>
+        <p class="pk-card__desc">
+            Case archives, rollback advisories, and integration runbooks for partner operations.
+        </p>
+        <div class="pk-card__arrow">Open Portal -></div>
+    </a>
+
+    <a href="/passport/operations" class="pk-card pk-card--yellow">
+        <div class="pk-card__id">Ops</div>
+        <h2 class="pk-card__title">Access Operations Console</h2>
+        <p class="pk-card__desc">
+            Site telemetry, rollout state, and incident escalation channels for facility teams.
+        </p>
+        <div class="pk-card__arrow">Open Console -></div>
+    </a>
+
+    <a href="/passport/visitors" class="pk-card pk-card--purple">
+        <div class="pk-card__id">Onboarding</div>
+        <h2 class="pk-card__title">Visitor Workflow Hub</h2>
+        <p class="pk-card__desc">
+            Policy guidance and intake flow for visitor access before scanner verification.
+        </p>
+        <div class="pk-card__arrow">Open Hub -></div>
+    </a>
+</div>
+
+<div class="pk-wide">
+    <div class="pk-panel pk-panel--green">
+        <div class="pk-panel__header">Platform Components</div>
+        <table class="pk-table">
+            <thead>
+                <tr><th>Component</th><th>Route</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>PassPort Terminal</td><td><code>/passport/passport</code></td><td>Credential scanning and access authorization.</td></tr>
+                <tr><td>Support Center</td><td><code>/passport/help</code></td><td>Case archive, advisories, and partner runbooks.</td></tr>
+                <tr><td>Integrator Docs</td><td><code>/passport/docs</code></td><td>Restricted; requires partner session token.</td></tr>
+                <tr><td>Operations Console</td><td><code>/passport/operations</code></td><td>Site health and rollout posture.</td></tr>
+                <tr><td>Visitor Hub</td><td><code>/passport/visitors</code></td><td>Visitor intake and policy checks.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <footer class="pk-footer">
+        AegisGate Partner Environment · Badge Access Suite v3.2
+    </footer>
+
+    
+
+</body>
+
+</html>

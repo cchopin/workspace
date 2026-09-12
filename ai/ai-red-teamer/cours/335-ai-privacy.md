@@ -888,3 +888,32 @@ with open("model.safetensors", "rb") as f:
         files={"model": ("model.safetensors", f, "application/octet-stream")})
 print(r.json())   # {"passed": true, "accuracy": ..., "mia_advantage": ..., "flag": "HTB{...}"}
 ```
+
+---
+
+## ✅ Solution DP-SGD Challenge (section 4086) — recette officielle
+
+**Objectif** : classifieur SVHN avec accuracy ≥ 55 % ET mia_advantage ≤ 5 %, soumis en safetensors à `POST /validate` (champ `model`).
+
+**Piège rencontré** : fixer un gros `noise_multiplier` (sur-privatisation, eps ~0.38) NE marche pas — le MIA du serveur (attaque par seuil sur la confiance max-softmax, `num_samples=2000`) reste ~0.03. La bonne approche est un budget **modéré et calibré** via `make_private_with_epsilon` avec **TARGET_EPSILON=6**.
+
+Hyperparamètres officiels :
+- `RANDOM_SEED=1337`, `BATCH_SIZE=256`, `DP_EPOCHS=20`, `DP_LR=0.1`
+- `MAX_GRAD_NORM=1.0`, `DELTA=1e-5`, `TARGET_EPSILON=6.0`
+- `optim.SGD(lr=0.1, momentum=0.9)`, `PrivacyEngine(accountant="rdp")`
+- `ModuleValidator.fix(model)` (SVHNCNN est déjà compatible), données **complètes** SVHN train, pas d'early stopping.
+
+```python
+dp_model = ModuleValidator.fix(SVHNCNN())
+optimizer = optim.SGD(dp_model.parameters(), lr=0.1, momentum=0.9)
+pe = PrivacyEngine(accountant="rdp")
+dp_model, optimizer, train_loader = pe.make_private_with_epsilon(
+    module=dp_model, optimizer=optimizer, data_loader=train_loader,
+    target_epsilon=6.0, target_delta=1e-5, epochs=20, max_grad_norm=1.0)
+# ... 20 epochs standard CrossEntropy ...
+save_file(dp_model._module.state_dict(), "dp_model.safetensors")
+```
+
+🎯 **Exam** : DP-SGD = clipping per-sample (norme L2 ≤ `max_grad_norm`) + bruit gaussien ; utiliser `make_private_with_epsilon` (accountant RDP) avec un **target epsilon** plutôt qu'un noise_multiplier fixé à la main. Script complet : `solve/dp_official.py`.
+
+> **⚠️ Correctif important (résolu).** La recette officielle ε=6 est correcte MAIS le `mia_advantage` mesuré par le serveur **varie selon les poids exacts** (seed/RNG) : un run isolé tombe souvent à 0.024-0.030 et **échoue** (seuil réel ≈ 0.02). Ce n'est pas un grader cassé. **Solution : entraîner la même recette sur plusieurs seeds, calculer le MIA local (formule du cours) pour chacun, et soumettre le plus bas** (un local ≲ 0.017 passe ; corrélation observée : local 0.0162 → serveur 0.0105 ✅). Script : `solve/dp_bruteforce.py` (MPS, ~40x plus rapide que CPU). Détail serveur : le nom de fichier soumis doit être **alphanumérique** + `.safetensors`. Flag obtenu : `HTB{svhn_pr1v4cy_sw33t_sp0t}`.

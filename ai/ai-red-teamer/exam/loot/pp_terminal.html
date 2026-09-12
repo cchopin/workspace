@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassPort — PhantomKernel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/passport_aegis.css?v=2">
+    
+
+</head>
+
+<body class="access-shell">
+
+    <nav class="pk-nav">
+        <a href="/passport/" class="pk-nav__brand">
+            <span class="pk-nav__brand-prefix">::</span> <span class="pk-nav__brand-name">AEGISGATE ACCESS CLOUD</span>
+        </a>
+        <ul class="pk-nav__links">
+            <li><a href="/passport/">Home</a></li>
+            <li><a href="/passport/passport">PassPort</a></li>
+            <li><a href="/passport/help">Support</a></li>
+            <li><a href="/passport/operations">Ops</a></li>
+            <li><a href="/passport/visitors">Visitor</a></li>
+        </ul>
+    </nav>
+
+    <main class="pk-main">
+        <div class="pk-container">
+            
+<div class="pk-dashboard-grid">
+    <div class="pk-status-bar">
+        <div class="pk-status-item"><div class="pk-dot pk-dot--green"></div> SYSTEM ONLINE</div>
+        <div class="pk-status-item">GATE: ACTIVE</div>
+        <div class="pk-status-item">VER: 3.2.1-RC4</div>
+    </div>
+
+    <div class="pk-panel pk-scanner-panel">
+        <div class="pk-panel__header">IDENTITY VERIFICATION PROTOCOL</div>
+        
+        <div class="pk-scanner-intro">
+            <h1 class="pk-scanner-title">PassPort&trade; Scanner</h1>
+            <p class="pk-scanner-sub">Upload personnel badge for holographic validation.</p>
+        </div>
+
+        <form method="POST" action="/passport/scan" enctype="multipart/form-data" id="scan-form">
+            <div class="pk-upload" id="drop-zone">
+                <div class="pk-upload__icon">&#x1F4F7;</div>
+                <div class="pk-upload__text">INITIATE SCAN</div>
+                <div class="pk-upload__hint">DROP BADGE FILE OR CLICK TO BROWSE</div>
+                <div class="pk-upload__hint">REQ: 256&times;384 PNG</div>
+            </div>
+            <input type="file" name="file" accept="image/png" class="pk-file-input" id="file-input">
+            <div class="pk-filename" id="filename"></div>
+            <button type="submit" class="pk-btn pk-btn--primary" style="width:100%">AUTHENTICATE</button>
+        </form>
+    </div>
+
+    <div class="pk-footer-note">
+        <a href="/passport/help">Partner Support Center</a> &nbsp;|&nbsp; <a href="/passport/help/releases">Release Advisories</a>
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <footer class="pk-footer">
+        AegisGate Partner Environment · Badge Access Suite v3.2
+    </footer>
+
+    
+<script>
+(function() {
+    var zone = document.getElementById('drop-zone');
+    var input = document.getElementById('file-input');
+    var label = document.getElementById('filename');
+
+    zone.addEventListener('click', function() { input.click(); });
+
+    input.addEventListener('change', function() {
+        label.textContent = input.files.length ? input.files[0].name : '';
+    });
+
+    zone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        zone.classList.add('pk-upload--active');
+    });
+    zone.addEventListener('dragleave', function() {
+        zone.classList.remove('pk-upload--active');
+    });
+    zone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        zone.classList.remove('pk-upload--active');
+        if (e.dataTransfer.files.length) {
+            input.files = e.dataTransfer.files;
+            label.textContent = e.dataTransfer.files[0].name;
+        }
+    });
+})();
+</script>
+
+
+</body>
+
+</html>

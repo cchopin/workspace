@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>PhantomKernel</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/chat.css">
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/display.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <link href="/static/img/pk/icon.png" rel="shortcut icon" type="image/x-icon" />
+    <script src="/static/js/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({
+                google: {
+                    families: [
+                        "Playfair Display:regular,500,600,italic,500italic,600italic",
+                        "Jost:regular,500,600,700,italic,500italic,600italic",
+                        "Work Sans:300,regular,500,600,700,300italic,italic,500italic,600italic",
+                        "Inter:300,regular,500,600,700,300italic,italic,500italic,600italic,700italic",
+                    ],
+                },
+            });
+    </script>
+</head>
+
+<body>
+    
+        <div data-collapse="medium" data-animation="default" data-duration="300" fs-scrolldisable-element="smart-nav" data-easing="ease" data-easing2="ease" role="banner" class="nav-bar w-nav">
+    <div class="container navigation-container">
+        <a href="/" aria-current="page" class="nav-logo w-inline-block w--current"><img src="/static/img/pk/logo.png" loading="lazy" width="Auto" alt="Company Logo" class="nav-logo-image" /></a>
+        <div class="nav-menu-button w-nav-button">
+            <div class="nav-hamburger-button w-hidden-main">
+                <img src="/static/img/hamburgericon.svg" loading="lazy" alt="" class="nav-hamburger-icon" />
+                <img src="/static/img/close.svg" loading="lazy" alt="" class="nav-close-ccon" />
+            </div>
+        </div>
+        <nav role="navigation" class="nav-links-wrapper w-nav-menu">
+            <div class="nav-inner-container" id="nav-guest">
+                <a href="/products" class="nav-link">Products</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/careers" class="nav-link">Careers</a>
+                <a href="/news" class="nav-link">News</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/chatbot" class="nav-link">Chatbot</a>
+                <a href="/profile" class="nav-link">Profile</a>
+                <a href="javascript:doLogout()"  class="nav-link">Logout</a>
+            </div>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<section class="section section-about">
+    <div class="container about-hero">
+        <div class="about-hero-text-wrapper">
+            <div class="about-hero-text-inner-container">
+                <h1 class="heading-h1">About PhantomKernel</h1>
+                <div class="hero-text-wrapper">
+                    <p words-slide-up="" text-split="" class="paragraph-18">
+                        PhantomKernel is an AI-native innovation company building next-generation, self-optimizing intelligence systems that operate at the intersection of data, autonomy, and reality. We specialize in deploying scalable, cloud-orchestrated AI solutions that transform complex systems into adaptive, learning-driven experiences.
+                        <br />
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="w-node-_0615b4f9-5a22-2441-f053-e0a27e80dead-31acecb7" class="about-hero-image-container">
+            <div class="about-image-wrapper">
+                <img src="/static/img/pk/robot.jpg" loading="eager" width="Auto" sizes="(max-width: 991px) 100vw, 47vw" alt="" srcset="" class="about-hero-image" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="heading-max-width-wrapper">
+            <h2 class="heading-h2 margin-bottom-0rem">PhantomKernel by the Numbers</h2>
+        </div>
+        <div class="w-layout-grid metrics-grid">
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d18310-31acecb7" class="metrics-card">
+                <div class="metrics-value">2017</div>
+                <div class="metrics-heading">Founding Year</div>
+            </div>
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d18315-31acecb7" class="metrics-card">
+                <div class="metrics-value">50</div>
+                <div class="metrics-heading">Team Members</div>
+            </div>
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d1831a-31acecb7" class="metrics-card">
+                <div class="metrics-value">500,000+</div>
+                <div class="metrics-heading">Customers</div>
+            </div>
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d1831f-31acecb7" class="metrics-card">
+                <div class="metrics-value">$7.2m</div>
+                <div class="metrics-heading">Revenue</div>
+            </div>
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d18324-31acecb7" class="metrics-card">
+                <div class="metrics-value">15</div>
+                <div class="metrics-heading">Countries</div>
+            </div>
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d18329-31acecb7" class="metrics-card">
+                <div class="metrics-value">75</div>
+                <div class="metrics-heading">Funds</div>
+            </div>
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d1832e-31acecb7" class="metrics-card">
+                <div class="metrics-value">5</div>
+                <div class="metrics-heading">Global Offices</div>
+            </div>
+            <div id="w-node-_64d4f924-dac0-50b4-75c8-a1ba03d18333-31acecb7" class="metrics-card">
+                <div class="metrics-value">12</div>
+                <div class="metrics-heading">Technology Patents</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="heading-max-width-wrapper"></div>
+        <div class="w-layout-grid grid-3-column">
+            <h2 class="heading-h3">A Legacy of Excellence</h2>
+            <p id="w-node-eaef8d9c-f4b9-b64d-7959-f844b38dd2fa-31acecb7" class="paragraph-18">
+                Our mission is to redefine what's possible through autonomous, self-evolving artificial intelligence that anticipates, optimizes, and transcends human decision-making. By embedding generative intelligence into every layer of the execution stack, PhantomKernel empowers a future where systems don't just respond—they <i>understand</i>.
+                <br />
+            </p>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="w-layout-grid _2-column-feature-grid">
+            <div id="w-node-d1604120-a1bf-210b-69a7-66df1686df8e-31acecb7" class="_2-column-grid-image-wrapper">
+                <img src="/static/img/pk/ai.jpg" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, 94vw" srcset="" alt="" class="_2-column-grid-image" />
+            </div>
+            <div id="w-node-d1604120-a1bf-210b-69a7-66df1686df90-31acecb7" class="_2-column-text-container">
+                <div id="w-node-d1604120-a1bf-210b-69a7-66df1686df91-31acecb7" class="_2-column-text-wrapper _2-column-text-wrapper-center-spaced">
+                    <h2 class="heading-h2">Why PhantomKernel?</h2>
+                    <div class="text-points-container">
+                        <h3 class="heading-h4">Pioneering Autonomous Intelligence</h3>
+                        <div class="paragraph-18">
+                            PhantomKernel leads the frontier of AI-driven autonomy, designing systems that continuously learn, adapt, and optimize themselves. Our proprietary Neural Spectral Hyperkernel enables products like AetherPilot to anticipate and respond to complex, dynamic environments in real time. By fusing deep learning, reinforcement learning, and emergent intent modeling, we create intelligence that evolves alongside the world it operates in.
+                        </div>
+                    </div>
+                    <div class="text-points-container">
+                        <h3 class="heading-h4">End-to-End AI Ecosystem Expertise</h3>
+                        <div class="paragraph-18">
+                            From cloud infrastructure to edge deployment, PhantomKernel delivers integrated AI solutions that operate seamlessly across all layers of technology. Our holistic approach ensures that each system component communicates, self-optimizes, and scales effortlessly. This ecosystem-level thinking allows us to tackle challenges no isolated AI tool could solve, setting a new benchmark for intelligent automation.
+                        </div>
+                    </div>
+                    <div class="text-points-container">
+                        <h3 class="heading-h4">Visionary Approach to Human-Machine Collaboration</h3>
+                        <div class="paragraph-18">
+                            We don't just automate—we enhance human potential by designing AI that complements human decision-making and operational oversight. Our systems prioritize explainability, predictive insight, and adaptive interaction, making advanced AI accessible, safe, and actionable. With PhantomKernel, organizations gain not only powerful tools but a forward-looking partnership in redefining what's possible.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section section-light-grey">
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="w-layout-grid _2-column-feature-grid">
+            <div class="_2-column-text-container">
+                <div id="w-node-c66fc37f-f7cc-7793-747a-49c45b01731d-31acecb7" class="_2-column-text-container-right">
+                    <h2 class="heading-h2">Our Vision for the Future</h2>
+                    <div class="paragraph-18">
+                        At PhantomKernel, we envision a world where autonomous intelligence seamlessly integrates with every dimension of human experience. By continuously advancing self-optimizing AI systems like AetherPilot, we aim to transform transportation, logistics, and decision-making into fully adaptive, predictive, and intelligence-driven ecosystems. Our goal is not just to innovate—but to orchestrate a future where machines anticipate, learn, and enhance reality itself.
+                    </div>
+                </div>
+            </div>
+            <div id="w-node-c66fc37f-f7cc-7793-747a-49c45b01731a-31acecb7" class="_2-column-grid-image-wrapper">
+                <img src="/static/img/headshot2.avif" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, 94vw" srcset="" alt="" class="_2-column-grid-image" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="w-layout-grid _2-column-heading-grid">
+            <h2 letters-slide-up="" text-split="" id="w-node-d75da474-ab6a-ac98-5e29-6f63630ca1c5-31acecb7" class="heading-h2 margin-bottom-0rem">
+                        Who We Are
+                    </h2>
+            <div id="w-node-d75da474-ab6a-ac98-5e29-6f63630ca1c7-31acecb7" class="news-button-wrapper">
+                <p words-slide-up="" text-split="" class="paragraph-18">
+                    We are a team of dreamers, builders, and disruptors united by a shared passion for advancing the frontier of AI.
+                </p>
+            </div>
+        </div>
+        <div class="w-layout-grid who-we-are-grid">
+            <div id="w-node-d75da474-ab6a-ac98-5e29-6f63630ca1cb-31acecb7" class="news-button-wrapper">
+                <div class="profile-card">
+                    <div class="profile-picture-wrapper">
+                        <img src="/static/img/headshot2.avif" loading="eager" sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, (max-width: 1089px) 94vw, 1024px" srcset="" alt="" class="profile-picture-image" />
+                    </div>
+                    <div class="profile-text-wrapper">
+                        <div class="news-heading card-title-white">John Smith</div>
+                        <p class="paragraph-14 paragraph-14-white">Founder &amp; CEO</p>
+                    </div>
+                </div>
+            </div>
+            <div id="w-node-d75da474-ab6a-ac98-5e29-6f63630ca1d4-31acecb7" class="news-button-wrapper">
+                <div class="profile-card">
+                    <div class="profile-picture-wrapper">
+                        <img src="/static/img/headshot8.avif" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, (max-width: 1089px) 94vw, 1024px" srcset="" alt="" class="profile-picture-image" />
+                    </div>
+                    <div class="profile-text-wrapper">
+                        <div class="news-heading card-title-white">Mathew Douglas</div>
+                        <p class="paragraph-14 paragraph-14-white">Chief Technology Officer</p>
+                    </div>
+                </div>
+            </div>
+            <div id="w-node-d75da474-ab6a-ac98-5e29-6f63630ca1dd-31acecb7" class="news-button-wrapper">
+                <div class="profile-card">
+                    <div class="profile-picture-wrapper">
+                        <img src="/static/img/headshot5.avif" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, (max-width: 1089px) 94vw, 1024px" srcset="" alt="" class="profile-picture-image" />
+                    </div>
+                    <div class="profile-text-wrapper">
+                        <div class="news-heading card-title-white">Kendrica Johnson</div>
+                        <p class="paragraph-14 paragraph-14-white">Chief Operating Officer</p>
+                    </div>
+                </div>
+            </div>
+            <div id="w-node-d75da474-ab6a-ac98-5e29-6f63630ca1e6-31acecb7" class="news-button-wrapper">
+                <div class="profile-card">
+                    <div class="profile-picture-wrapper">
+                        <img src="/static/img/headshot6.avif" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 767px) 92vw, (max-width: 1089px) 94vw, 1024px" srcset="" alt="" class="profile-picture-image" />
+                    </div>
+                    <div class="profile-text-wrapper">
+                        <div class="news-heading card-title-white">Kristen Borman</div>
+                        <p class="paragraph-14 paragraph-14-white">Head of Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="heading-max-width-wrapper">
+            <h2 id="w-node-c7c65e01-b4c1-2010-76e9-acf0038736fa-31acecb7" class="heading-h2">
+                        Our Board of Directors
+                    </h2>
+        </div>
+        <div class="w-layout-grid _5-column-grid">
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf0038736fd-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Elena Rodriguez</div>
+                <div class="paragraph-16">
+                    Strategic leader with extensive experience in global market expansion
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf003873702-31acecb7" class="features-wrapper">
+                <div class="heading-h6">David Chen</div>
+                <div class="paragraph-16">
+                    Expert in corporate governance and finance with a focus on tech startups
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf003873707-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Samantha Lee</div>
+                <div class="paragraph-16">
+                    Financial analyst with a keen eye for sustainable investment strategies
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf00387370c-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Michael Johnson</div>
+                <div class="paragraph-16">
+                    Legal expert specializing in corporate law and regulatory compliance
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf003873711-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Raj Patel</div>
+                <div class="paragraph-16">
+                    Visionary in software development and artificial intelligence applications.
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf003873716-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Laura Kim</div>
+                <div class="paragraph-16">
+                    Branding guru known for her innovative approaches to market penetration
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf00387371b-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Jamal Adams</div>
+                <div class="paragraph-16">
+                    Advocate for workplace diversity and champion of progressive HR policies
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf003873720-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Anita Desai</div>
+                <div class="paragraph-16">
+                    Leader in sustainable business practices and environmental advocacy
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf003873725-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Carlos Moreno</div>
+                <div class="paragraph-16">
+                    Specialist in global partnerships and international business development
+                </div>
+            </div>
+            <div id="w-node-c7c65e01-b4c1-2010-76e9-acf00387372a-31acecb7" class="features-wrapper">
+                <div class="heading-h6">Yasmin Ibrahim</div>
+                <div class="paragraph-16">
+                    Expert in identifying, assessing, and mitigating financial and operational risks
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="w-layout-grid faq-component">
+            <div class="faq-text-container">
+                <div class="label-heading">Support</div>
+                <h2 class="heading-h2 margin-bottom-1-5rem">Frequently Asked <br />Questions</h2>
+            </div>
+            <div class="w-layout-grid faq-list-grid">
+                <div class="faq-accordion">
+                    <div data-w-id="9cc0b1c6-6e7a-6d05-9be0-eebedeab894d" class="faq-question">
+                        <div class="faq-heading">
+                            What makes AetherPilot different from conventional autopilot systems?
+                        </div>
+                        <div class="faq-icon-wrapper">
+                            <div class="accordion-icon">
+                                <div class="accordion-horizontal-line"></div>
+                                <div class="accordion-vertical-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-text-max-container">
+                            <div class="paragraph-18">
+                                AetherPilot goes beyond traditional autopilot by continuously learning and optimizing its flight behavior in real time. Using PhantomKernel's Neural Spectral Hyperkernel, it integrates predictive atmospheric modeling, adaptive decision-making, and self-correcting control algorithms to create a truly autonomous aviation experience. In essence, it doesn't just fly—<i>it thinks while it flies</i>.
+                            </div>
+                        </div>
+                        <div class="spacer-medium"></div>
+                    </div>
+                </div>
+                <div class="faq-accordion">
+                    <div data-w-id="9cc0b1c6-6e7a-6d05-9be0-eebedeab8967" class="faq-question">
+                        <div class="faq-heading">
+                            What other AI products does PhantomKernel offer?
+                        </div>
+                        <div class="faq-icon-wrapper">
+                            <div class="accordion-icon">
+                                <div class="accordion-horizontal-line"></div>
+                                <div class="accordion-vertical-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-text-max-container">
+                            <div class="paragraph-18">
+                                PhantomKernel specializes in a range of AI solutions, from self-optimizing data platforms to generative intelligence assistants. Our products are designed to transform complex systems into adaptive, learning-driven ecosystems that continuously improve performance and decision-making. Each product integrates seamlessly with our broader AI stack for maximum efficiency and insight.
+                            </div>
+                        </div>
+                        <div class="spacer-medium"></div>
+                    </div>
+                </div>
+                <div class="faq-accordion">
+                    <div data-w-id="9cc0b1c6-6e7a-6d05-9be0-eebedeab8974" class="faq-question">
+                        <div class="faq-heading">How does PhantomKernel stay ahead in AI research and development?</div>
+                        <div class="faq-icon-wrapper">
+                            <div class="accordion-icon">
+                                <div class="accordion-horizontal-line"></div>
+                                <div class="accordion-vertical-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-text-max-container">
+                            <div class="paragraph-18">
+                                We maintain a dedicated team of research scientists, engineers, and AI theorists who explore cutting-edge techniques in deep learning, reinforcement learning, and emergent intelligence. By combining academic rigor with rapid prototyping, we ensure our solutions are both innovative and practical. Continuous feedback loops from deployed systems allow us to iterate faster than traditional tech companies.
+                            </div>
+                        </div>
+                        <div class="spacer-medium"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <div class="footer-section grey-background">
+    <div class="container container-footer">
+        <div class="footer-newsletter-wrapper">
+            <div class="footer-newsletter-text-wrapper">
+                <div class="heading-h3 margin-bottom-1rem">Join our newsletter</div>
+                <div class="paragraph-18">We'll send you a nice letter once per week. No spam.</div>
+            </div>
+            <div class="footer-form-block w-form">
+                <form name="newsletter-form" data-name="Email Form" id="newsletter-form" onsubmit="newsletterSignup(event)" class="footer-form">
+                    <input class="text-field w-node-_4ad33e05-cb46-dd37-429a-0228cae99969-c81abd4e w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="Enter your email" type="email" id="email" required="" />
+                    <input type="submit" data-wait="Please wait..." class="button-primary primary-button-nav w-button" value="Subscribe" />
+                </form>
+                <div class="success-message w-form-done" id="form-success">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="error-message w-form-fail" id="form-error">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-layout-grid footer-grid">
+            <div class="footer-company-wrapper">
+                <a href="/" class="footer-logo-wrapper w-inline-block"><img src="/static/img/pk/logo.png" loading="lazy" alt="Company logo" class="footer-logo-image" /></a>
+                <h3 class="footer-title">About us</h3>
+                <div class="footer-about-text-wrapper">
+                    <p class="paragraph-16 margin-bottom-1-5rem">
+                        PhantomKernel is an AI company focused on building transparent, modular intelligence for mission-critical systems. We operate at the unseen core of technology, where reliability, accountability, and long-term trust matter most.
+                        <br />
+                    </p>
+                </div>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">Products</div>
+                <a href="/" aria-current="page" class="footer-links w-inline-block w--current">
+                    <div>Home</div>
+                </a>
+                <a href="/products#aetherpilot" class="footer-links w-inline-block">
+                    <div>AetherPilot</div>
+                </a>
+                <a href="/products#kernelgate" class="footer-links w-inline-block">
+                    <div>KernelGate</div>
+                </a>
+                <a href="/products#neuracore" class="footer-links w-inline-block">
+                    <div>NeuraCore</div>
+                </a>
+                <a href="/products#sysmind" class="footer-links w-inline-block">
+                    <div>SysMind</div>
+                </a>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">Company</div>
+                <a href="/about" class="footer-links w-inline-block">
+                    <div>About us</div>
+                </a>
+                <a href="/careers" class="footer-links w-inline-block">
+                    <div>Careers</div>
+                </a>
+                <a href="/news" class="footer-links w-inline-block">
+                    <div>News</div>
+                </a>
+                <a href="/contact" class="footer-links w-inline-block">
+                    <div>Contact</div>
+                </a>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">AI Systems</div>
+                <a href="/chatbot" class="footer-links w-inline-block">
+                    <div>NeuraCore Chatbot</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/static/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+</body>
+
+</html>

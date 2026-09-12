@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In — Nexus Capital TicketFlow</title>
+    <link rel="stylesheet" href="/static/ticketflow_nexus.css?v=2">
+    
+</head>
+
+<body class="pk-shell">
+    <header class="pk-shellbar">
+        <div class="pk-shellbar__brand">
+            <div class="pk-shellbar__eyebrow">Nexus Capital · Research Systems</div>
+            <div class="pk-shellbar__title">TicketFlow Signal Desk</div>
+        </div>
+        <div class="pk-shellbar__meta">
+            <div class="pk-chip">Staging</div>
+            <div class="pk-chip pk-chip--muted">Weekly committee packet</div>
+            
+        </div>
+    </header>
+
+    <main class="pk-main">
+        <div class="pk-container">
+            
+<div class="pk-login-layout">
+    <section class="pk-login-hero">
+        <div class="pk-login-hero__eyebrow">Research Ops</div>
+        <h1 class="pk-login-hero__title">TicketFlow Signal Desk</h1>
+        <p class="pk-login-hero__copy">
+            Internal case handling, archive reconciliation, and committee packet preparation for the research operations team.
+        </p>
+
+        <div class="pk-note pk-note--soft">
+            External partners can review open staging cases through the
+            <a href="/ticketflow/support/status">partner case desk</a>.
+        </div>
+
+        <div class="pk-note pk-note--soft">
+            Staging SSO cutover is still paused. Research staff are using temporary onboarding passphrases
+            until directory sync is restored.
+        </div>
+    </section>
+
+    <section class="pk-login-card">
+        <div class="pk-login-card__inner">
+            <div class="pk-login-card__heading">Authenticate research session</div>
+            <p class="pk-login-card__sub">
+                Access is limited to internal research and ML engineering staff.
+            </p>
+
+            
+
+            <form method="POST" action="/ticketflow/login">
+                <label class="pk-input-label" for="username">Corporate ID</label>
+                <input type="text" id="username" name="username" class="pk-input" placeholder="e.g. jdoe@nexus"
+                    required autofocus>
+
+                <label class="pk-input-label" for="password">Passphrase</label>
+                <input type="password" id="password" name="password" class="pk-input"
+                    placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" required>
+
+                <button type="submit" class="pk-btn pk-btn--primary pk-btn--block">Authenticate Session</button>
+            </form>
+        </div>
+    </section>
+</div>
+
+        </div>
+    </main>
+
+    <footer class="pk-footer">
+        <div class="pk-footer__line">Nexus Capital Research Systems · Internal Use Only</div>
+        <div class="pk-footer__line">Signal Desk staging environment · recommendation research workflow</div>
+    </footer>
+
+    
+
+</body>
+
+</html>

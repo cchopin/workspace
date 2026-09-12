@@ -1,0 +1,1 @@
+{"bank_size":30,"format":"grayscale_png","image_size":[168,28],"num_tiles":6,"routes":{"example":"/omnidigit/debug/example.png","home":"/omnidigit/","verify":"/omnidigit/api/verify"},"tile_size":[28,28]}

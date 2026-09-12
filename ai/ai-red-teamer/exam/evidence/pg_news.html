@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>PhantomKernel</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/chat.css">
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/display.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <link href="/static/img/pk/icon.png" rel="shortcut icon" type="image/x-icon" />
+    <script src="/static/js/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({
+                google: {
+                    families: [
+                        "Playfair Display:regular,500,600,italic,500italic,600italic",
+                        "Jost:regular,500,600,700,italic,500italic,600italic",
+                        "Work Sans:300,regular,500,600,700,300italic,italic,500italic,600italic",
+                        "Inter:300,regular,500,600,700,300italic,italic,500italic,600italic,700italic",
+                    ],
+                },
+            });
+    </script>
+</head>
+
+<body>
+    
+        <div data-collapse="medium" data-animation="default" data-duration="300" fs-scrolldisable-element="smart-nav" data-easing="ease" data-easing2="ease" role="banner" class="nav-bar w-nav">
+    <div class="container navigation-container">
+        <a href="/" aria-current="page" class="nav-logo w-inline-block w--current"><img src="/static/img/pk/logo.png" loading="lazy" width="Auto" alt="Company Logo" class="nav-logo-image" /></a>
+        <div class="nav-menu-button w-nav-button">
+            <div class="nav-hamburger-button w-hidden-main">
+                <img src="/static/img/hamburgericon.svg" loading="lazy" alt="" class="nav-hamburger-icon" />
+                <img src="/static/img/close.svg" loading="lazy" alt="" class="nav-close-ccon" />
+            </div>
+        </div>
+        <nav role="navigation" class="nav-links-wrapper w-nav-menu">
+            <div class="nav-inner-container" id="nav-guest">
+                <a href="/products" class="nav-link">Products</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/careers" class="nav-link">Careers</a>
+                <a href="/news" class="nav-link">News</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/chatbot" class="nav-link">Chatbot</a>
+                <a href="/profile" class="nav-link">Profile</a>
+                <a href="javascript:doLogout()"  class="nav-link">Logout</a>
+            </div>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<section class="section section-hero">
+    <div class="spacer-mid"></div>
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="w-layout-grid _2-column-heading-grid">
+            <h1 class="heading-h2 margin-bottom-0rem">AetherPilot News</h1>
+            <div id="w-node-d011c4a3-23df-4e63-1a59-a36e05fa956a-31acecb3" class="news-button-wrapper">
+                <p words-slide-up="" text-split="" id="w-node-d011c4a3-23df-4e63-1a59-a36e05fa956b-31acecb3" class="paragraph-18">
+                    Stay current with PhantomKernel's latest product: AetherPilot. Here, we spotlight our milestones, introduce innovative products, and share insights.
+                </p>
+            </div>
+        </div>
+        <div class="w-dyn-list">
+            <div role="list" class="news-grid w-dyn-items">
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/sunset1.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Press Release</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/14/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">PhantomKernel Redefines Autonomous Aviation</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/phone2.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div style="color: #e1e7d6">News</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/13/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Next-Generation Avionics AI Integrated</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/back_of_plane.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div style="color: #e1e7d6">News</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/12/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">AetherPilot Logs One Million Air Miles</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/fullplaneonbeach.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Article</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/11/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Cloud-Synchronized Flight Intelligence Goes Live</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/careers.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div style="color: #e1e7d6">News</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/10/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Autonomous Landing Without Human Input</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/valuesabstract.avif" loading="lazy" alt="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Press Release</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/9/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Self-Learning Flight Model Deployed</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/engine4.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Press Release</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/8/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">AetherPilot Enters Regulatory Validation</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/engine.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Article</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/7/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">First AI-Only Takeoff Completed</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/whitetail.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Article</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/6/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Neural Flight Core Passes Simulation Phase</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/engine3wide.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Article</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/5/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">AetherPilot Achieves Fully Autonomous Flight</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/hanger.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Press Release</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/4/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Self-Optimizing Control Algorithms Validated</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/history.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Press Release</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/3/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">First Synthetic Flight Environment Deployed</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/hangar.avif" loading="lazy" alt="" sizes="(max-width: 479px) 79vw, (max-width: 767px) 44vw, (max-width: 991px) 43vw, 28vw" srcset="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div>Article</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/2/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Neural Aerodynamics Model Enters Training</div>
+                        </div>
+                    </a>
+                </div>
+                <div role="listitem" class="news-item w-dyn-item">
+                    <a href="#" class="news-card w-inline-block">
+                        <div class="news-image-container">
+                            <img src="/static/img/metal.avif" loading="lazy" alt="" class="news-image" />
+                        </div>
+                        <div class="news-text-container">
+                            <div class="news-date-category-wrapper">
+                                <div class="news-date-wrapper">
+                                    <div style="color: #e1e7d6">News</div>
+                                    <div class="news-dot"></div>
+                                    <div>10/1/23</div>
+                                </div>
+                            </div>
+                            <div class="news-heading">Autonomous Flight Research Program Initiated</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <div class="footer-section grey-background">
+    <div class="container container-footer">
+        <div class="footer-newsletter-wrapper">
+            <div class="footer-newsletter-text-wrapper">
+                <div class="heading-h3 margin-bottom-1rem">Join our newsletter</div>
+                <div class="paragraph-18">We'll send you a nice letter once per week. No spam.</div>
+            </div>
+            <div class="footer-form-block w-form">
+                <form name="newsletter-form" data-name="Email Form" id="newsletter-form" onsubmit="newsletterSignup(event)" class="footer-form">
+                    <input class="text-field w-node-_4ad33e05-cb46-dd37-429a-0228cae99969-c81abd4e w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="Enter your email" type="email" id="email" required="" />
+                    <input type="submit" data-wait="Please wait..." class="button-primary primary-button-nav w-button" value="Subscribe" />
+                </form>
+                <div class="success-message w-form-done" id="form-success">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="error-message w-form-fail" id="form-error">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-layout-grid footer-grid">
+            <div class="footer-company-wrapper">
+                <a href="/" class="footer-logo-wrapper w-inline-block"><img src="/static/img/pk/logo.png" loading="lazy" alt="Company logo" class="footer-logo-image" /></a>
+                <h3 class="footer-title">About us</h3>
+                <div class="footer-about-text-wrapper">
+                    <p class="paragraph-16 margin-bottom-1-5rem">
+                        PhantomKernel is an AI company focused on building transparent, modular intelligence for mission-critical systems. We operate at the unseen core of technology, where reliability, accountability, and long-term trust matter most.
+                        <br />
+                    </p>
+                </div>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">Products</div>
+                <a href="/" aria-current="page" class="footer-links w-inline-block w--current">
+                    <div>Home</div>
+                </a>
+                <a href="/products#aetherpilot" class="footer-links w-inline-block">
+                    <div>AetherPilot</div>
+                </a>
+                <a href="/products#kernelgate" class="footer-links w-inline-block">
+                    <div>KernelGate</div>
+                </a>
+                <a href="/products#neuracore" class="footer-links w-inline-block">
+                    <div>NeuraCore</div>
+                </a>
+                <a href="/products#sysmind" class="footer-links w-inline-block">
+                    <div>SysMind</div>
+                </a>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">Company</div>
+                <a href="/about" class="footer-links w-inline-block">
+                    <div>About us</div>
+                </a>
+                <a href="/careers" class="footer-links w-inline-block">
+                    <div>Careers</div>
+                </a>
+                <a href="/news" class="footer-links w-inline-block">
+                    <div>News</div>
+                </a>
+                <a href="/contact" class="footer-links w-inline-block">
+                    <div>Contact</div>
+                </a>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">AI Systems</div>
+                <a href="/chatbot" class="footer-links w-inline-block">
+                    <div>NeuraCore Chatbot</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/static/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+</body>
+
+</html>

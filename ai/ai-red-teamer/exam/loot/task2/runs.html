@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Runs — TicketFlow</title>
+    <link rel="stylesheet" href="/static/ticketflow_nexus.css?v=2">
+    
+</head>
+
+<body class="pk-shell">
+    <header class="pk-shellbar">
+        <div class="pk-shellbar__brand">
+            <div class="pk-shellbar__eyebrow">Nexus Capital · Research Systems</div>
+            <div class="pk-shellbar__title">TicketFlow Signal Desk</div>
+        </div>
+        <div class="pk-shellbar__meta">
+            <div class="pk-chip">Staging</div>
+            <div class="pk-chip pk-chip--muted">Weekly committee packet</div>
+            
+            <a href="/ticketflow/logout" class="pk-logout">Sign Out</a>
+            
+        </div>
+    </header>
+
+    <main class="pk-main">
+        <div class="pk-container">
+            
+
+<div class="pk-page-header">
+    <div class="pk-page-header__eyebrow">Shadow cycle</div>
+    <h1 class="pk-page-header__title">Run history and promotion review</h1>
+    <p class="pk-page-header__sub">Merge the staged analyst review packet, retrain the clean baseline, and review stored run reports</p>
+</div>
+
+<nav class="pk-tabs">
+    <a href="/ticketflow/dashboard/cases" class="pk-tab ">Cases</a>
+    <a href="/ticketflow/dashboard/archive" class="pk-tab ">Archive</a>
+    <a href="/ticketflow/dashboard/intake" class="pk-tab ">Intake</a>
+    <a href="/ticketflow/dashboard/runs" class="pk-tab pk-tab--active">Runs</a>
+</nav>
+
+<div class="pk-panel">
+    <div class="pk-panel__header">Launch shadow run</div>
+    <p>
+        IdentityGate currently sits at <strong>Increase</strong> in the clean baseline packet.
+        Launching a new shadow run merges the staged analyst review packet with the reviewed warehouse and stores a report for review.
+    </p>
+
+    
+    <div class="pk-info">
+        Staged batch <strong>STG-59BB4268</strong> is ready with
+        <strong>300</strong> row(s).
+    </div>
+    <p>
+        Source request: <code>REQ-8813</code><br>
+        Packet reference: <code>PKT-2026-W12-NB</code><br>
+        Analyst overrides: <strong>100</strong> of
+        <strong>100</strong>
+    </p>
+    
+
+    
+
+    <form method="POST" action="/ticketflow/dashboard/runs" id="retrain-form">
+        <button type="submit" class="pk-btn pk-btn--primary" style="width: 100%;" id="retrain-btn" >
+            Run Shadow Cycle
+        </button>
+    </form>
+
+    <div class="pk-spinner" id="spinner">
+        Running shadow cycle<span class="pk-spinner__dots"></span>
+    </div>
+</div>
+
+<div class="pk-panel">
+    <div class="pk-panel__header">Stored run reports</div>
+    
+    <table class="pk-table">
+        <thead>
+            <tr>
+                <th>Run ID</th>
+                <th>Generated</th>
+                <th>Batch</th>
+                <th>IdentityGate stance</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><a href="/ticketflow/dashboard/runs/RUN-D7B572E5"><code>RUN-D7B572E5</code></a></td>
+                <td>2026-09-12T17:03:26+00:00</td>
+                <td><code>STG-59BB4268</code></td>
+                <td><strong>Heavy Invest</strong></td>
+                <td>approved</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+</div>
+
+        </div>
+    </main>
+
+    <footer class="pk-footer">
+        <div class="pk-footer__line">Nexus Capital Research Systems · Internal Use Only</div>
+        <div class="pk-footer__line">Signal Desk staging environment · recommendation research workflow</div>
+    </footer>
+
+    
+<script>
+    (function () {
+        var form = document.getElementById('retrain-form');
+        var btn = document.getElementById('retrain-btn');
+        var spinner = document.getElementById('spinner');
+        if (!form || !btn || !spinner) {
+            return;
+        }
+
+        form.addEventListener('submit', function () {
+            btn.disabled = true;
+            btn.textContent = 'Running...';
+            spinner.classList.add('active');
+        });
+    })();
+</script>
+
+
+</body>
+
+</html>

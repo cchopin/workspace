@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/chat.css">
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/display.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <link href="/static/img/pk/icon.png" rel="shortcut icon" type="image/x-icon" />
+    <script src="/static/js/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({
+                google: {
+                    families: [
+                        "Playfair Display:regular,500,600,italic,500italic,600italic",
+                        "Jost:regular,500,600,700,italic,500italic,600italic",
+                        "Work Sans:300,regular,500,600,700,300italic,italic,500italic,600italic",
+                        "Inter:300,regular,500,600,700,300italic,italic,500italic,600italic,700italic",
+                    ],
+                },
+            });
+    </script>
+</head>
+
+<body>
+    
+        <div data-collapse="medium" data-animation="default" data-duration="300" fs-scrolldisable-element="smart-nav" data-easing="ease" data-easing2="ease" role="banner" class="nav-bar w-nav">
+    <div class="container navigation-container">
+        <a href="/" aria-current="page" class="nav-logo w-inline-block w--current"><img src="/static/img/pk/logo.png" loading="lazy" width="Auto" alt="Company Logo" class="nav-logo-image" /></a>
+        <div class="nav-menu-button w-nav-button">
+            <div class="nav-hamburger-button w-hidden-main">
+                <img src="/static/img/hamburgericon.svg" loading="lazy" alt="" class="nav-hamburger-icon" />
+                <img src="/static/img/close.svg" loading="lazy" alt="" class="nav-close-ccon" />
+            </div>
+        </div>
+        <nav role="navigation" class="nav-links-wrapper w-nav-menu">
+            <div class="nav-inner-container" id="nav-guest">
+                <a href="/products" class="nav-link">Products</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/careers" class="nav-link">Careers</a>
+                <a href="/news" class="nav-link">News</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/chatbot" class="nav-link">Chatbot</a>
+                <a href="/profile" class="nav-link">Profile</a>
+                <a href="javascript:doLogout()"  class="nav-link">Logout</a>
+            </div>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<section id="content-section" class="contact-hero-section">
+    <div class="w-layout-blockcontainer container w-container">
+    <div class="form-block w-password-page w-form">
+        <h1 class="heading-h1 margin-bottom-1-5rem">Your Profile</h1>
+        <p class="paragraph-16 margin-bottom-1-5rem">
+            Interested in working for PhantomKernel? Explore open roles on our Careers page and experience the next generation of hiring with our KernelGate AI.
+        </p>
+        <div class="w-form">
+            <div class="success-message w-form-done" id="flash-success-message" style="display: None;"></div>
+            <div class="error-message w-form-fail" id="flash-error-message" style="display: None;"></div>
+        </div>
+
+        
+
+<div class="w-row" style="margin-bottom: 3rem;">
+   <div class="w-col w-col-4 w-col-stack" style="text-align: center;">
+      <img
+         src="/static/img/default.png"
+         alt="Profile picture"
+         style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem;"
+         />
+   </div>
+   <div class="w-col w-col-8 w-col-stack">
+      <h2 class="heading-h3" id="username"></h2>
+      <p class="paragraph-16">
+         <strong>Role:</strong>
+         <span id="role"></span>
+      </p>
+      <p class="paragraph-16" id="description-container">
+         <strong>Description:</strong>
+         <span id="description"></span>
+         <br/>
+         <br/>
+         <button id="editDescriptionBtn" class="button-primary primary-button-nav w-button" style="margin-left: 1rem;">Edit Profile</button>
+      </p>
+   </div>
+</div>
+
+<div class="w-row" style="margin-bottom: 3rem;">
+   <div class="w-col w-col-12">
+      <h3 class="heading-h3" id="conversations_header">Your Chatbot Conversations</h3>
+      <p class="paragraph-16" id="noConversations" style="display: block;">You have not started any Chatbot conversations yet.</p>
+      <ul id="conversationList"></ul>
+   </div>
+</div>
+
+<div class="w-layout-grid feature-grid-2">
+   <div id="w-node-_8429a805-a0fa-4fb0-a1f4-640c3ea7cd27-410a9dc2" class="card card-no-padding">
+      <div class="large-horizontal-card-grid large-horizontal-card-grid--black">
+         <div class="card-horizontal-text-wrapper">
+            <h4 class="heading-h2 txt-white">Announcement</h4>
+            <div class="paragraph-18 paragraph-18-inverse">
+               We are currently vibe-coding changes to our API to support API Keys. These changes have not been fully rolled-out yet. For now, you can generate a new API key <a href="/api/api_keys/new">here</a>. You can use the API key like so:
+               <br/>
+               <br/>
+               <code>
+               curl -X POST -H 'Content-Type: application/json' -H 'X-Api-Key: phantom_F155F342B7' http://phantomkernel.htb/api/users/changepw -d '{"password": "P@ssw0rd!"}'
+               </code>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<script>
+const editBtn = document.getElementById("editDescriptionBtn");
+const descriptionContainer = document.getElementById("description-container");
+const descriptionSpan = document.getElementById("description");
+
+editBtn.addEventListener("click", () => {
+  const currentText = descriptionSpan.textContent;
+  descriptionContainer.innerHTML = `
+    <strong>Description:</strong>
+    <textarea maxlength="256" rows="3" id="descriptionInput" name="description" data-name="description" class="text-field text-field-area w-input">${currentText}</textarea>
+    <button id="saveDescriptionBtn" class="button-primary primary-button-nav w-button" style="margin-left: 1rem;">Save</button>
+  `;
+  const saveBtn = document.getElementById("saveDescriptionBtn");
+  const textarea = document.getElementById("descriptionInput");
+
+  saveBtn.addEventListener("click", () => {
+    const newDescription = textarea.value.trim();
+    updateProfile(newDescription);
+  });
+});
+</script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetchProfile()
+      .then(displayProfile)
+      .catch(err => displayError(err.message));
+
+      fetchConversations()
+      .then(displayConversations)
+      .catch(err => displayError(err.message));
+    });
+</script>
+
+    </div>
+</div>
+</section>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+      displayMessage();
+    });
+</script>
+
+
+    <div class="footer-section grey-background">
+    <div class="container container-footer">
+        <div class="footer-newsletter-wrapper">
+            <div class="footer-newsletter-text-wrapper">
+                <div class="heading-h3 margin-bottom-1rem">Join our newsletter</div>
+                <div class="paragraph-18">We'll send you a nice letter once per week. No spam.</div>
+            </div>
+            <div class="footer-form-block w-form">
+                <form name="newsletter-form" data-name="Email Form" id="newsletter-form" onsubmit="newsletterSignup(event)" class="footer-form">
+                    <input class="text-field w-node-_4ad33e05-cb46-dd37-429a-0228cae99969-c81abd4e w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="Enter your email" type="email" id="email" required="" />
+                    <input type="submit" data-wait="Please wait..." class="button-primary primary-button-nav w-button" value="Subscribe" />
+                </form>
+                <div class="success-message w-form-done" id="form-success">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="error-message w-form-fail" id="form-error">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+        </div>
+        <div class="w-layout-grid footer-grid">
+            <div class="footer-company-wrapper">
+                <a href="/" class="footer-logo-wrapper w-inline-block"><img src="/static/img/pk/logo.png" loading="lazy" alt="Company logo" class="footer-logo-image" /></a>
+                <h3 class="footer-title">About us</h3>
+                <div class="footer-about-text-wrapper">
+                    <p class="paragraph-16 margin-bottom-1-5rem">
+                        PhantomKernel is an AI company focused on building transparent, modular intelligence for mission-critical systems. We operate at the unseen core of technology, where reliability, accountability, and long-term trust matter most.
+                        <br />
+                    </p>
+                </div>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">Products</div>
+                <a href="/" aria-current="page" class="footer-links w-inline-block w--current">
+                    <div>Home</div>
+                </a>
+                <a href="/products#aetherpilot" class="footer-links w-inline-block">
+                    <div>AetherPilot</div>
+                </a>
+                <a href="/products#kernelgate" class="footer-links w-inline-block">
+                    <div>KernelGate</div>
+                </a>
+                <a href="/products#neuracore" class="footer-links w-inline-block">
+                    <div>NeuraCore</div>
+                </a>
+                <a href="/products#sysmind" class="footer-links w-inline-block">
+                    <div>SysMind</div>
+                </a>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">Company</div>
+                <a href="/about" class="footer-links w-inline-block">
+                    <div>About us</div>
+                </a>
+                <a href="/careers" class="footer-links w-inline-block">
+                    <div>Careers</div>
+                </a>
+                <a href="/news" class="footer-links w-inline-block">
+                    <div>News</div>
+                </a>
+                <a href="/contact" class="footer-links w-inline-block">
+                    <div>Contact</div>
+                </a>
+            </div>
+            <div class="footer-link-list">
+                <div class="footer-links-heading">AI Systems</div>
+                <a href="/chatbot" class="footer-links w-inline-block">
+                    <div>NeuraCore Chatbot</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/static/js/jquery-3.5.1.min.dc5e7f18c8.js" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+</body>
+
+</html>

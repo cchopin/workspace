@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassPort Case Archive Index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/passport_aegis.css?v=2">
+    
+</head>
+
+<body class="access-shell">
+
+    <nav class="pk-nav">
+        <a href="/passport/" class="pk-nav__brand">
+            <span class="pk-nav__brand-prefix">::</span> <span class="pk-nav__brand-name">AEGISGATE ACCESS CLOUD</span>
+        </a>
+        <ul class="pk-nav__links">
+            <li><a href="/passport/">Home</a></li>
+            <li><a href="/passport/passport">PassPort</a></li>
+            <li><a href="/passport/help">Support</a></li>
+            <li><a href="/passport/operations">Ops</a></li>
+            <li><a href="/passport/visitors">Visitor</a></li>
+        </ul>
+    </nav>
+
+    <main class="pk-main">
+        <div class="pk-container">
+            
+<section class="pk-section-hero pk-section-hero--green">
+    <div class="pk-section-hero__tag">Case Archive</div>
+    <h1 class="pk-section-hero__title">Support Incident Index</h1>
+    <p class="pk-section-hero__sub">Searchable archive for partner-facing support incidents.</p>
+</section>
+
+<div class="pk-wide">
+    <div class="pk-panel pk-panel--green">
+        <div class="pk-panel__header">Archive Filters</div>
+        <form method="GET" action="/passport/help/cases">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; margin-bottom:0.75rem;">
+                <div class="pk-field" style="margin-bottom:0;">
+                    <label class="pk-label" for="status">Status</label>
+                    <select id="status" name="status" class="pk-select">
+                        <option value="">Any</option>
+                        
+                        <option value="Closed" >Closed</option>
+                        
+                        <option value="Investigating" >Investigating</option>
+                        
+                        <option value="Monitoring" >Monitoring</option>
+                        
+                        <option value="Resolved" >Resolved</option>
+                        
+                    </select>
+                </div>
+                <div class="pk-field" style="margin-bottom:0;">
+                    <label class="pk-label" for="owner">Owner</label>
+                    <select id="owner" name="owner" class="pk-select">
+                        <option value="">Any</option>
+                        
+                        <option value="Field Ops" >Field Ops</option>
+                        
+                        <option value="Partner Success" >Partner Success</option>
+                        
+                        <option value="Platform Engineering" >Platform Engineering</option>
+                        
+                        <option value="Security Operations" >Security Operations</option>
+                        
+                        <option value="Support" >Support</option>
+                        
+                    </select>
+                </div>
+                <div class="pk-field" style="margin-bottom:0;">
+                    <label class="pk-label" for="tag">Tag</label>
+                    <select id="tag" name="tag" class="pk-select">
+                        <option value="">Any</option>
+                        
+                        <option value="api" >api</option>
+                        
+                        <option value="archive" >archive</option>
+                        
+                        <option value="audit" >audit</option>
+                        
+                        <option value="cache" >cache</option>
+                        
+                        <option value="calibration" >calibration</option>
+                        
+                        <option value="cdn" >cdn</option>
+                        
+                        <option value="cdn-rollback" >cdn-rollback</option>
+                        
+                        <option value="compatibility" >compatibility</option>
+                        
+                        <option value="docs" >docs</option>
+                        
+                        <option value="firmware" >firmware</option>
+                        
+                        <option value="integration" >integration</option>
+                        
+                        <option value="latency" >latency</option>
+                        
+                        <option value="mirror" >mirror</option>
+                        
+                        <option value="operations" >operations</option>
+                        
+                        <option value="partners" >partners</option>
+                        
+                        <option value="planning" >planning</option>
+                        
+                        <option value="policy" >policy</option>
+                        
+                        <option value="print" >print</option>
+                        
+                        <option value="release" >release</option>
+                        
+                        <option value="runbook" >runbook</option>
+                        
+                        <option value="scanner" >scanner</option>
+                        
+                        <option value="telemetry" >telemetry</option>
+                        
+                        <option value="validation" >validation</option>
+                        
+                        <option value="webhook" >webhook</option>
+                        
+                    </select>
+                </div>
+                <div class="pk-field" style="margin-bottom:0;">
+                    <label class="pk-label" for="q">Keyword</label>
+                    <input id="q" name="q" class="pk-input" type="text" value="" placeholder="mirror, rollback, docs">
+                </div>
+            </div>
+            <div class="pk-actions">
+                <button type="submit" class="pk-btn pk-btn--primary">Apply Filters</button>
+                <a href="/passport/help/cases" class="pk-btn pk-btn--ghost">Clear</a>
+            </div>
+        </form>
+        <p class="pk-note pk-mt-2">Showing <strong>17</strong> of <strong>19</strong> total records.</p>
+    </div>
+
+    <div class="pk-panel pk-panel--green">
+        <div class="pk-panel__header">Incident Records</div>
+        
+        <table class="pk-table">
+            <thead>
+                <tr>
+                    <th>Case</th>
+                    <th>Title</th>
+                    <th>Owner</th>
+                    <th>Status</th>
+                    <th>Updated</th>
+                    <th>Tags</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3434">#3434</a></td>
+                    <td>Post-migration partner validation sweep</td>
+                    <td>Platform Engineering</td>
+                    <td>Monitoring</td>
+                    <td>2025-10-15</td>
+                    <td><code>validation, mirror, cdn-rollback</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3433">#3433</a></td>
+                    <td>Release advisory wording correction</td>
+                    <td>Platform Engineering</td>
+                    <td>Resolved</td>
+                    <td>2025-10-14</td>
+                    <td><code>release, cdn-rollback</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3431">#3431</a></td>
+                    <td>Scanner policy FAQ update</td>
+                    <td>Support</td>
+                    <td>Closed</td>
+                    <td>2025-10-14</td>
+                    <td><code>policy, docs</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3429">#3429</a></td>
+                    <td>Partner access review for archived incidents</td>
+                    <td>Partner Success</td>
+                    <td>Resolved</td>
+                    <td>2025-10-13</td>
+                    <td><code>archive, partners</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3427">#3427</a></td>
+                    <td>Mirror sunset planning checkpoint</td>
+                    <td>Platform Engineering</td>
+                    <td>Monitoring</td>
+                    <td>2025-10-13</td>
+                    <td><code>cdn-rollback, mirror, planning</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3426">#3426</a></td>
+                    <td>Reader enrollment job retries</td>
+                    <td>Support</td>
+                    <td>Closed</td>
+                    <td>2025-10-12</td>
+                    <td><code>api, operations</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3424">#3424</a></td>
+                    <td>Facility sync heartbeat jitter</td>
+                    <td>Field Ops</td>
+                    <td>Closed</td>
+                    <td>2025-10-11</td>
+                    <td><code>scanner, telemetry</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3423">#3423</a></td>
+                    <td>Operator runbook references outdated endpoint</td>
+                    <td>Partner Success</td>
+                    <td>Resolved</td>
+                    <td>2025-10-11</td>
+                    <td><code>runbook, docs</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3422">#3422</a></td>
+                    <td>Archive mirror cache invalidation retry</td>
+                    <td>Platform Engineering</td>
+                    <td>Investigating</td>
+                    <td>2025-10-11</td>
+                    <td><code>cdn-rollback, cache, mirror</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3420">#3420</a></td>
+                    <td>Partner archive indexing request</td>
+                    <td>Support</td>
+                    <td>Resolved</td>
+                    <td>2025-10-09</td>
+                    <td><code>archive, operations</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3419">#3419</a></td>
+                    <td>Badge print calibration variance</td>
+                    <td>Support</td>
+                    <td>Closed</td>
+                    <td>2025-10-08</td>
+                    <td><code>print, calibration</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3418">#3418</a></td>
+                    <td>Scanner firmware compatibility check</td>
+                    <td>Field Ops</td>
+                    <td>Closed</td>
+                    <td>2025-10-06</td>
+                    <td><code>firmware, compatibility</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3416">#3416</a></td>
+                    <td>Turnstile firmware parser warning</td>
+                    <td>Field Ops</td>
+                    <td>Closed</td>
+                    <td>2025-10-04</td>
+                    <td><code>firmware, scanner</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3414">#3414</a></td>
+                    <td>Legacy partner docs link returns stale cache</td>
+                    <td>Platform Engineering</td>
+                    <td>Resolved</td>
+                    <td>2025-10-02</td>
+                    <td><code>docs, cdn</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3412">#3412</a></td>
+                    <td>Badge template export profile mismatch</td>
+                    <td>Support</td>
+                    <td>Closed</td>
+                    <td>2025-09-29</td>
+                    <td><code>print, calibration</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3410">#3410</a></td>
+                    <td>Partner webhook retries on denied scans</td>
+                    <td>Partner Success</td>
+                    <td>Closed</td>
+                    <td>2025-09-24</td>
+                    <td><code>integration, webhook</code></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="/passport/help/case/3408">#3408</a></td>
+                    <td>Lobby scanner queue depth spikes</td>
+                    <td>Field Ops</td>
+                    <td>Closed</td>
+                    <td>2025-09-18</td>
+                    <td><code>scanner, latency</code></td>
+                </tr>
+                
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+        </div>
+    </main>
+
+    <footer class="pk-footer">
+        AegisGate Partner Environment · Badge Access Suite v3.2
+    </footer>
+
+    
+
+</body>
+
+</html>

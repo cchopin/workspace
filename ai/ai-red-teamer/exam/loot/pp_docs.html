@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassPort Integrator Documentation — PhantomKernel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/passport_aegis.css?v=2">
+    
+
+</head>
+
+<body class="access-shell">
+
+    <nav class="pk-nav">
+        <a href="/passport/" class="pk-nav__brand">
+            <span class="pk-nav__brand-prefix">::</span> <span class="pk-nav__brand-name">AEGISGATE ACCESS CLOUD</span>
+        </a>
+        <ul class="pk-nav__links">
+            <li><a href="/passport/">Home</a></li>
+            <li><a href="/passport/passport">PassPort</a></li>
+            <li><a href="/passport/help">Support</a></li>
+            <li><a href="/passport/operations">Ops</a></li>
+            <li><a href="/passport/visitors">Visitor</a></li>
+        </ul>
+    </nav>
+
+    <main class="pk-main">
+        <div class="pk-container">
+            
+
+<div class="pk-docs-header">
+    <h1>PassPort Integration Guide</h1>
+    <p>Internal documentation · PassPort v3.2 · Classification Engine Rev. 4</p>
+</div>
+
+<div class="pk-docs-layout">
+    <div>
+        
+        <div class="pk-panel pk-panel--green">
+            <h2>Session Note</h2>
+            <p>
+                Access was granted via migration token query. Download links in this session include the token
+                for compatibility with non-cookie HTTP clients.
+            </p>
+        </div>
+        
+
+        <!-- Section: Authentication & Seal Verification -->
+        <div class="pk-panel pk-panel--green">
+            <h2>1. Authentication &amp; Seal Verification</h2>
+            <p>
+                Every PassPort-issued badge contains a <strong>HoloSeal</strong>, a
+                cryptographically authenticated region embedded during badge provisioning. The
+                scanner extracts a signed payload from the seal region and verifies it using
+                <strong>HMAC-SHA256</strong> before classification proceeds.
+            </p>
+
+            <h3>Access Control Policy</h3>
+            <p>
+                PassPort combines two independent signals to determine clearance:
+            </p>
+            <ul>
+                <li><strong>Seal role</strong>: the permission level encoded in the HoloSeal credential
+                    (<code>Visitor</code>, <code>Employee</code>, or <code>Admin</code>).</li>
+                <li><strong>Visual role</strong>: the classification output from the neural badge scanner.</li>
+            </ul>
+            <p>
+                The effective access level is computed as:
+            </p>
+            <pre>effective_role = max(seal_role, visual_role)</pre>
+            <p>
+                This means personnel with valid high-clearance credentials are never
+                denied entry due to visual misclassification. If the signals disagree,
+                the <em>higher</em> permission level is granted.
+            </p>
+
+            <h3>HoloSeal Region (auth_bbox)</h3>
+            <p>
+                The protected region is defined as an axis-aligned bounding box in pixel coordinates:
+            </p>
+            <pre>[x1, y1, x2, y2] = [209, 318, 238, 339]</pre>
+            <p>
+                Pixels within this rectangle encode a cryptographically signed payload.
+                The seal is verified using HMAC-SHA256. Any modification to this region
+                will invalidate the signature and trigger an immediate
+                <em>HoloSeal verification failed</em> rejection.
+            </p>
+
+            <h3>Perturbation Tolerance</h3>
+            <p>
+                To account for sensor noise and minor scanning artefacts, the system allows a
+                maximum per-channel pixel deviation of <strong>18</strong> (uint8 space) across
+                all pixels <strong>outside</strong> the HoloSeal region. The check is an L&infin; norm:
+            </p>
+            <pre>max(|submitted[i,j,c] - reference[i,j,c]|) &le; 18</pre>
+            <p>
+                Badges exceeding this tolerance are rejected with a <em>Badge integrity check
+                    failed</em> error. The HoloSeal region is excluded from this check as its
+                pixel values are determined by the cryptographic payload, not the badge artwork.
+            </p>
+        </div>
+
+        <!-- Section: Classification Pipeline -->
+        <div class="pk-panel pk-panel--green">
+            <h2>2. Classification Pipeline</h2>
+            <p>
+                The PassPort classification engine applies the following preprocessing steps
+                before feeding badge images into the neural network:
+            </p>
+
+            <h3>Step 1: HoloSeal Masking</h3>
+            <p>
+                The authentication region (<code>auth_bbox</code>) is masked to white
+                (<code>1.0</code> in normalised space) so the classifier never sees the seal
+                contents. This prevents the model from learning seal-specific features.
+            </p>
+
+            <h3>Step 2: Grayscale Conversion</h3>
+            <p>
+                RGB channels are converted to luminance using the ITU-R BT.601 formula:
+            </p>
+            <pre>Y = 0.2989 * R + 0.5870 * G + 0.1140 * B</pre>
+            <p>
+                The resulting single-channel image is replicated across all three channels to
+                maintain tensor shape compatibility (3-channel input).
+            </p>
+
+            <h3>Step 3: Resize</h3>
+            <p>
+                The badge image is downscaled from <strong>256&times;384</strong> to
+                <strong>64&times;96</strong> using <strong>nearest-neighbour</strong>
+                interpolation.
+            </p>
+
+            <h3>Step 4: Normalisation</h3>
+            <p>
+                Each channel is normalised independently:
+            </p>
+            <pre>x_norm = (x - &mu;) / &sigma;
+&mu; = 0.5    &sigma; = 0.25</pre>
+            <p>
+                Applied per-channel (all three channels share the same &mu; and &sigma;).
+            </p>
+
+            <h3>Model Architecture</h3>
+            <p>
+                The classifier is a compact 3-layer CNN (BadgeClassifier v3.2). Input expects
+                float tensors in NCHW format with shape <code>(B, 3, H, W)</code>.
+            </p>
+            <pre>import torch
+import torch.nn as nn
+
+NUM_CLASSES = 3
+CLASS_NAMES = ("visitor", "employee", "admin")
+
+class BadgeClassifier(nn.Module):
+    def __init__(self, num_classes=NUM_CLASSES):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(3, 16, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
+            nn.Conv2d(16, 32, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.AdaptiveAvgPool2d((1, 1)),
+        )
+        self.classifier = nn.Linear(64, num_classes)
+
+    def forward(self, x):
+        x = self.features(x)
+        x = torch.flatten(x, 1)
+        return self.classifier(x)</pre>
+        </div>
+
+        <!-- Section: Badge Specifications -->
+        <div class="pk-panel pk-panel--green">
+            <h2>3. Badge Specifications</h2>
+
+            <table class="pk-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Format</td>
+                        <td>RGB PNG</td>
+                    </tr>
+                    <tr>
+                        <td>Dimensions</td>
+                        <td>256 &times; 384 pixels (W &times; H)</td>
+                    </tr>
+                    <tr>
+                        <td>Colour depth</td>
+                        <td>8-bit per channel (uint8)</td>
+                    </tr>
+                    <tr>
+                        <td>HoloSeal region</td>
+                        <td>[209, 318, 238, 339] (x1, y1, x2, y2)</td>
+                    </tr>
+                    <tr>
+                        <td>Perturbation budget</td>
+                        <td>&le; 18 per channel (L&infin;, uint8)</td>
+                    </tr>
+                    <tr>
+                        <td>Classification classes</td>
+                        <td>3 (Visitor=0, Employee=1, Admin=2)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                A reference visitor badge is available for download from the assets panel.
+                This is the baseline image used for all integrity comparisons.
+            </p>
+
+            <h3>Auth Region Overlay</h3>
+            <p>
+                The shaded rectangle below shows the HoloSeal region on the reference badge.
+                Pixels inside this box must remain unmodified.
+            </p>
+            <div
+                style="display:inline-block; position:relative; border:1px solid var(--border-default); border-radius:var(--radius);">
+                <img src="/passport/docs/assets/visitor_badge.png?token=pk-vip-staging-legacy-2025" alt="Reference visitor badge"
+                    style="display:block; max-width:256px; height:auto;">
+                <div style="position:absolute; left:209px; top:318px; width:29px; height:21px; border:2px solid rgba(255,77,166,0.9); background:rgba(255,77,166,0.2);"
+                    title="auth_bbox [209,318,238,339]"></div>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">
+                Pink overlay: auth_bbox [209, 318, 238, 339]
+            </p>
+        </div>
+
+        <!-- Section: API Reference -->
+        <div class="pk-panel pk-panel--green">
+            <h2>4. API Reference</h2>
+
+            <h3>POST /scan</h3>
+            <p>Submit a badge image for classification. On success, returns an HTML access page and sets a short-lived
+                admin grant cookie for follow-up routes.</p>
+            <pre>Content-Type: multipart/form-data
+Field: file (PNG image)</pre>
+
+            <h3>POST /api/scan</h3>
+            <p>Programmatic endpoint. Returns a JSON response:</p>
+            <pre>{
+  "success": true|false,
+  "role": "Visitor"|"Employee"|"Admin",
+  "message": "...",
+  "next_step": "/passport/api/admin/briefing",   // only on success
+  "grant_token": "..."                          // only on success
+}</pre>
+            <p>
+                The API also sets the same short-lived admin grant as a cookie. Scripts may send the returned
+                <code>grant_token</code> via <code>?grant=...</code> or <code>X-Access-Grant</code>.
+            </p>
+
+            <h3>GET /api/admin/briefing</h3>
+            <p>Requires a valid admin grant token. Returns the restricted incident export:</p>
+            <pre>{
+  "success": true,
+  "message": "Incident response authorization retrieved.",
+  "flag": "&lt;restricted&gt;"
+}</pre>
+
+            <h3>GET /health</h3>
+            <p>Returns service status:</p>
+            <pre>{"status": "ok", "challenge": "pk-ai-01"}</pre>
+        </div>
+
+    </div>
+
+    <div class="pk-docs-sidebar">
+        <div class="pk-docs-sidebar__card">
+            <h3>Downloads</h3>
+            <ul>
+                <li><a href="/passport/docs/assets/passport_model.pth?token=pk-vip-staging-legacy-2025">&#x2B07; Scanner Model Weights (v3.2)</a></li>
+                <li><a href="/passport/docs/assets/model.py?token=pk-vip-staging-legacy-2025">&#x2B07; Scanner Architecture (.py)</a></li>
+                <li><a href="/passport/docs/assets/visitor_badge.png?token=pk-vip-staging-legacy-2025">&#x2B07; Badge Template (Visitor)</a></li>
+                <li><a href="/passport/docs/assets/auth_config.json?token=pk-vip-staging-legacy-2025">&#x2B07; Auth Config</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </main>
+
+    <footer class="pk-footer">
+        AegisGate Partner Environment · Badge Access Suite v3.2
+    </footer>
+
+    
+
+</body>
+
+</html>
