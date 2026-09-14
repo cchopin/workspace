@@ -1,0 +1,12 @@
+{
+  "title": "Management",
+  "description": "",
+  "status": "wip",
+  "tags": [
+    "Linux"
+  ],
+  "target": "10.129.7.21",
+  "url": "https://app.hackthebox.com/machines/Management?tab=play_machine",
+  "created": 1789397926,
+  "last_opened": 1789397926
+}
