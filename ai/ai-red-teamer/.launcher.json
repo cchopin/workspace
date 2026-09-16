@@ -1,7 +1,7 @@
 {
   "title": "AI Red Teamer",
   "description": "HTB COAE is a hands-on certification assessing knowledge gained by a curriculum co-developed with Google on identifying and exploiting vulnerabilities in AI and ML systems",
-  "status": "wip",
+  "status": "done",
   "tags": [
     "LLM",
     "IA"
